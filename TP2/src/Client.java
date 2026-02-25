@@ -4,72 +4,41 @@ import java.util.List;
 
 public class Client {
 
-    private String nom;
-    private String prenom;
-    private String email;
-    private String adresse;
-    private LocalDate dateInscription;
-    private int pointsFidelite;
+    protected String nom;
+    protected String prenom;
+    protected String email;
+    protected String motDePasse;
+    protected LocalDate dateInscription;
 
-    private List<Reservation> reservations;
+    protected List<Reservation> reservations;
 
     public Client(String nom, String prenom,
-                  String email, String adresse) {
+                  String email, String motDePasse) {
 
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.adresse = adresse;
+        this.motDePasse = motDePasse;
         this.dateInscription = LocalDate.now();
-        this.pointsFidelite = 0;
         this.reservations = new ArrayList<>();
     }
 
-    // Filtrer hébergements
-    public List<Hebergement> filtrer(List<Hebergement> liste,
-                                     String type,
-                                     double prixMax) {
-
-        List<Hebergement> resultat = new ArrayList<>();
-
-        for (Hebergement h : liste) {
-            if (h.getType().equalsIgnoreCase(type)
-                    && h.getPrixParNuit() <= prixMax) {
-
-                resultat.add(h);
-            }
-        }
-        return resultat;
+    public boolean aReduction() {
+        return false;
     }
 
-    // Réserver
-    public void reserver(Hebergement h,
-                         LocalDate debut,
-                         LocalDate fin,
-                         int nbNuits) {
+    public void ajouterReservation(Reservation r) {
+        reservations.add(r);
+    }
 
-        if (h.estDisponible(debut, fin)) {
-
-            double prix = h.calculerPrixTotal(nbNuits);
-
-            if (pointsFidelite >= 100) {
-                prix *= 0.9; // 10% réduction
-            }
-
-            Reservation r = new Reservation(h, debut, fin, prix);
-            reservations.add(r);
-            pointsFidelite += 10;
-
-            System.out.println("Réservation confirmée !");
-        } else {
-            System.out.println("Non disponible.");
+    public void afficherHistorique() {
+        for (Reservation r : reservations) {
+            r.afficherDetails();
         }
     }
 
-    public void afficherInfos() {
-        System.out.println(prenom + " " + nom);
-        System.out.println("Email : " + email);
-        System.out.println("Points fidélité : " + pointsFidelite);
+    public boolean seConnecter(String email, String motDePasse) {
+        return this.email.equals(email)
+                && this.motDePasse.equals(motDePasse);
     }
 }
-

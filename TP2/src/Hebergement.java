@@ -13,7 +13,6 @@ public class Hebergement {
     private String description;
 
     private List<Periode> disponibilites;
-    private List<Double> notes;
 
     public Hebergement(int id, String nom, String adresse,
                        String type, int capaciteMax,
@@ -28,15 +27,12 @@ public class Hebergement {
         this.description = description;
 
         this.disponibilites = new ArrayList<>();
-        this.notes = new ArrayList<>();
     }
 
-    // Getters
+    public String getNom() { return nom; }
     public String getType() { return type; }
     public double getPrixParNuit() { return prixParNuit; }
-    public String getNom() { return nom; }
 
-    // Ajouter disponibilité
     public void ajouterDisponibilite(LocalDate debut, LocalDate fin) {
         disponibilites.add(new Periode(debut, fin));
     }
@@ -50,17 +46,6 @@ public class Hebergement {
         return false;
     }
 
-    public double calculerPrixTotal(int nbNuits) {
-        return prixParNuit * nbNuits;
-    }
-
-    public void afficherResume() {
-        System.out.println("Nom: " + nom);
-        System.out.println("Type: " + type);
-        System.out.println("Prix/nuit: " + prixParNuit + " €");
-    }
-
-    // Classe interne
     private class Periode {
         private LocalDate debut;
         private LocalDate fin;

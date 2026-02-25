@@ -1,40 +1,44 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
         Hebergement h1 = new Hebergement(
-                1,
-                "Hotel Paris",
-                "Paris",
-                "Hotel",
-                2,
-                100,
-                "Centre ville"
-        );
+                1, "Hotel Paris", "Paris",
+                "Hotel", 2, 100,
+                "Centre ville");
 
         h1.ajouterDisponibilite(
                 LocalDate.of(2026, 1, 1),
-                LocalDate.of(2026, 12, 31)
-        );
+                LocalDate.of(2026, 12, 31));
 
-        Client c1 = new Client(
-                "Dupont",
-                "Alice",
-                "alice@mail.com",
-                "Paris"
-        );
+        // Nouveau client
+        NouveauClient nc = new NouveauClient(
+                "Dupont", "Alice",
+                "alice@mail.com", "1234");
 
-        c1.reserver(
-                h1,
-                LocalDate.of(2026, 5, 10),
-                LocalDate.of(2026, 5, 15),
-                5
-        );
+        Reservation r1 = new Reservation(
+                nc, h1,
+                LocalDate.of(2026, 5, 1),
+                LocalDate.of(2026, 5, 5));
 
-        c1.afficherInfos();
+        r1.confirmer();
+        nc.ajouterReservation(r1);
+
+        // Ancien client
+        AncienClient ac = new AncienClient(
+                "Martin", "Bob",
+                "bob@mail.com", "abcd");
+
+        Reservation r2 = new Reservation(
+                ac, h1,
+                LocalDate.of(2026, 6, 1),
+                LocalDate.of(2026, 6, 6));
+
+        r2.confirmer();
+        ac.ajouterReservation(r2);
+
+        ac.accederHistorique("bob@mail.com", "abcd");
     }
 }
