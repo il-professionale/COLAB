@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Hebergement h1 = new Hebergement(
-                1, "Hotel Paris", "Paris",
+                1, "Hotel SARACENO", "Paris",
                 "Hotel", 2, 100,
                 "Centre ville");
 
@@ -16,7 +16,7 @@ public class Main {
         // Nouveau client
         NouveauClient nc = new NouveauClient(
                 "Dupont", "Alice",
-                "alice@mail.com", "1234");
+                "alice@mail.com", "motDePasse");
 
         Reservation r1 = new Reservation(
                 nc, h1,
@@ -29,7 +29,7 @@ public class Main {
         // Ancien client
         AncienClient ac = new AncienClient(
                 "Martin", "Bob",
-                "bob@mail.com", "abcd");
+                "bob@mail.com", "BobMarlei");
 
         Reservation r2 = new Reservation(
                 ac, h1,
@@ -39,6 +39,6 @@ public class Main {
         r2.confirmer();
         ac.ajouterReservation(r2);
 
-        ac.accederHistorique("bob@mail.com", "abcd");
+        ac.accederHistorique("bob@mail.com", "BobMarlei");
     }
 }
