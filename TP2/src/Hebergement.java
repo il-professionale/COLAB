@@ -53,9 +53,6 @@ public abstract class Hebergement {
     public String getDescription() { return description; }
     public double getPrixParNuit() { return prixParNuit; }
 
-    // ----------------------------------------------------------------
-    // Méthode abstraite — chaque sous-classe DOIT l'implémenter
-    // ----------------------------------------------------------------
     public abstract double calculerPrix(int nombreNuits);
 
     public void ajouterDisponibilite(LocalDate debut, LocalDate fin) {

@@ -9,9 +9,7 @@ public class AncienClient extends Client {
         this.niveauFidelite = "Bronze";
     }
 
-    public AncienClient(String nom, String prenom,
-                        String email, String motDePasse,
-                        int pointsFidelite) {
+    public AncienClient(String nom, String prenom, String email, String motDePasse, int pointsFidelite) {
         super(nom, prenom, email, motDePasse);
         this.pointsFidelite = pointsFidelite;
         this.niveauFidelite = calculerNiveau(pointsFidelite);

@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        
+
         System.out.println("--- Constructeurs par défaut ---");
         Hotel hotelDefaut = new Hotel();
         hotelDefaut.afficher();

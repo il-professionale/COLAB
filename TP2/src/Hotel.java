@@ -28,7 +28,7 @@ public class Hotel extends Hebergement {
 
     @Override
     public double calculerPrix(int nombreNuits) {
-        double base = prixParNuit * nombreNuits; // prixParNuit est protected
+        double base = prixParNuit * nombreNuits;
         double majoration = (nombreEtoiles > 2) ? 1.0 + (nombreEtoiles - 2) * 0.1 : 1.0;
         return base * majoration;
     }
@@ -36,7 +36,7 @@ public class Hotel extends Hebergement {
     @Override
     public void afficher() {
         System.out.println("------ Hébergement : Hôtel ------");
-        super.afficher(); // affiche les attributs de Hebergement
+        super.afficher();
         System.out.println("  Étoiles     : " + nombreEtoiles + " ★");
         System.out.println("  Restaurant  : " + typeRestaurant);
     }
